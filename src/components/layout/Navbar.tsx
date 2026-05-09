@@ -82,13 +82,14 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-[#3A7A8A] px-6 pb-4">
-          {links.map((link) => (
+        <div className="lg:hidden bg-[#3A7A8A]/95 backdrop-blur px-6 py-4 border-t border-white/10 animate-in slide-in-from-top duration-300">
+          {links.map((link, i) => (
             <Link
               key={link.label}
               to={link.href}
-              className="block py-2 text-sm text-white/90 hover:text-white border-b border-white/10"
+              className="block py-3 text-base text-white/90 hover:text-white hover:translate-x-1 transition-all font-light tracking-wide border-b border-white/5 last:border-b-0"
               onClick={() => setMenuOpen(false)}
+              style={{ animation: `slideIn 0.3s ease-out ${i * 50}ms forwards`, opacity: 0 }}
             >
               {link.label}
             </Link>

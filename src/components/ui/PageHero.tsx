@@ -12,6 +12,7 @@ export const PageHero = ({ title, subtitle, videoUrl, height = 'h-96' }: Props) 
       loop
       muted
       playsInline
+      preload="auto"
       crossOrigin="anonymous"
       className="absolute inset-0 w-full h-full object-cover opacity-70"
       onError={(e) => console.error('Video failed to load:', videoUrl, e)}
