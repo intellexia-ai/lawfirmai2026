@@ -82,7 +82,7 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-[#3A7A8A]/95 backdrop-blur px-6 py-4 border-t border-white/10 animate-in slide-in-from-top duration-300">
+        <div className="fixed lg:hidden top-0 left-0 right-0 w-full bg-[#3A7A8A] backdrop-blur px-6 pt-32 pb-6 animate-in slide-in-from-top duration-300 z-40">
           {links.map((link, i) => (
             <Link
               key={link.label}
