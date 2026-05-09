@@ -67,7 +67,7 @@ export const Navbar = () => {
             Contacto
           </Link>
           <button
-            className="lg:hidden text-white"
+            className="lg:hidden text-white z-50 relative"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
