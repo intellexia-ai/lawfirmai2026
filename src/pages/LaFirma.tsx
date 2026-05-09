@@ -42,7 +42,6 @@ const team = [
 
 export default function LaFirmaPage() {
   const [activeTab, setActiveTab] = useState('somos');
-  const [expandedValue, setExpandedValue] = useState<string | null>(null);
 
   return (
     <div>
