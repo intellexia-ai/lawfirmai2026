@@ -20,6 +20,15 @@ const tabs = [
   },
 ];
 
+const recognitions = [
+  { award: 'Empresa Mexicana del Año 2021 y The Law Award Winners 2021', org: 'Latin American Quality Institute' },
+  { award: 'Firma Líder Diamante en Comercio Exterior (2023–2026)', org: 'Tops México' },
+  { award: 'Firma Líder Diamante en Inversión Extranjera', org: 'Tops México' },
+  { award: 'Firma Líder Platino en Litigio', org: 'Tops México' },
+  { award: 'Primera y única firma legal mexicana miembro de la World Free Zones Organization', org: 'WFZO — Emiratos Árabes Unidos' },
+  { award: 'Proveedor de Servicios Jurídicos Internacionales', org: 'Red Exterior de Asturex (España)' },
+];
+
 const values = [
   'Eficacia técnica',
   'Probidad de vida',
@@ -49,7 +58,19 @@ const team: TeamMember[] = [
   { name: 'Juan Carlos Prieto', areas: 'TIC, Diplomacia empresarial' },
   { name: 'Liv Espinoza', areas: 'Anticorrupción, Compliance, Litigio Administrativo' },
   { name: 'Mauricio Jaramillo', areas: 'Dirección, Proyectos Internacionales, IE y Comercio' },
-  { name: 'Arturo Flores López', areas: 'Nuevo socio' },
+  { name: 'Arturo Flores López', areas: 'Socio' },
+  {
+    name: 'Marlene Díaz',
+    areas: 'Protección de Datos Personales, Seguridad Informática y Privacidad. Máster en Derecho de las TICs (Universidad Carlos III de Madrid), 15 años de experiencia en España y Latinoamérica, especialista en RGPD de la UE',
+  },
+  {
+    name: 'María Espinosa',
+    areas: 'Contratos Tecnológicos (CLM), Gobernanza de TI y Compliance. Experiencia en Genpact, DXC Technology y Motorola Solutions; gestión de alianzas y ecosistemas globales',
+  },
+  {
+    name: 'Iván Díaz',
+    areas: 'Ciberseguridad, Protección de Datos y Peritaje Informático. CISO con 19+ años de trayectoria; certificaciones CISSP, CISA, CISM, ISO 27001:2022, CIPM-IAPP. Perito registrado ante el Poder Judicial de la Federación',
+  },
 ];
 
 export default function LaFirmaPage() {
@@ -98,6 +119,21 @@ export default function LaFirmaPage() {
             {values.map((value) => (
               <div key={value} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
                 <p className="font-medium text-gray-900">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reconocimientos */}
+      <section className="bg-white py-16 px-6 border-b border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif text-3xl mb-8 text-gray-900">Reconocimientos y Acreditaciones</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recognitions.map((r) => (
+              <div key={r.award} className="border-l-4 border-[#C96A3A] pl-5 py-2">
+                <p className="font-medium text-gray-900 leading-snug">{r.award}</p>
+                <p className="text-sm text-gray-500 mt-1">{r.org}</p>
               </div>
             ))}
           </div>

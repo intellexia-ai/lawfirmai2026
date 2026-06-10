@@ -6,7 +6,7 @@ const clients: Logo[] = [
 ];
 
 const alliances: Logo[] = [
-  { name: 'IDEPA' }, { name: 'InvestHK' }, { name: 'Texas-European Chamber' }, { name: 'CEEI Asturias' },
+  { name: 'México Business' }, { name: 'IDEPA' }, { name: 'InvestHK' }, { name: 'CEEI Asturias' },
   { name: 'CMIC' }, { name: 'Horizon' }, { name: 'ExpoCIHAC' }, { name: 'Energy Mexico' },
 ];
 
