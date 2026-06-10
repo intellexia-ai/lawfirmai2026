@@ -31,13 +31,25 @@ const values = [
   'Empatía',
 ];
 
-const team = [
-  { name: 'Bernardo Camacho', areas: 'Litigio Civil y Mercantil, Administrativo, Constitucional' },
+type TeamMember = {
+  name: string;
+  areas: string;
+  email?: string;
+  phone?: string;
+};
+
+const team: TeamMember[] = [
+  {
+    name: 'Bernardo Camacho Zavala',
+    areas: 'Litigio Civil y Mercantil, Administrativo, Constitucional',
+    email: 'bzavala@crza.com.mx',
+    phone: '55 2139 5193',
+  },
   { name: 'Fernando Díaz', areas: 'RSE, Internacional, Proyectos' },
   { name: 'Juan Carlos Prieto', areas: 'TIC, Diplomacia empresarial' },
   { name: 'Liv Espinoza', areas: 'Anticorrupción, Compliance, Litigio Administrativo' },
-  { name: 'Mariana Ortega', areas: 'Mediador certificado, Civil, Mercantil' },
   { name: 'Mauricio Jaramillo', areas: 'Dirección, Proyectos Internacionales, IE y Comercio' },
+  { name: 'Arturo Flores López', areas: 'Nuevo socio' },
 ];
 
 export default function LaFirmaPage() {
@@ -111,9 +123,27 @@ export default function LaFirmaPage() {
                 <div className="p-4">
                   <h3 className="font-serif text-lg text-gray-900 mb-2">{member.name}</h3>
                   <p className="text-sm text-gray-600">{member.areas}</p>
-                  <a href="#contacto" className="text-[#C96A3A] hover:text-[#B95A2A] text-sm font-medium mt-3 inline-block">
-                    Contactar
-                  </a>
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="block text-[#C96A3A] hover:text-[#B95A2A] text-sm font-medium mt-3 break-all"
+                    >
+                      {member.email}
+                    </a>
+                  )}
+                  {member.phone && (
+                    <a
+                      href={`tel:+52${member.phone.replace(/\s/g, '')}`}
+                      className="block text-gray-700 hover:text-gray-900 text-sm mt-1"
+                    >
+                      {member.phone}
+                    </a>
+                  )}
+                  {!member.email && (
+                    <a href="/contacto" className="text-[#C96A3A] hover:text-[#B95A2A] text-sm font-medium mt-3 inline-block">
+                      Contactar
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

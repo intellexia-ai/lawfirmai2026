@@ -1,16 +1,30 @@
 import { AnimatedHeading } from '../ui/AnimatedHeading';
 import { FadeIn } from '../ui/FadeIn';
+import { useEffect, useRef } from 'react';
 
 export const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.play().catch(error => {
+        console.error("Autoplay prevented:", error);
+      });
+    }
+  }, []);
+
   return (
     <section id="home" className="relative w-full h-screen overflow-hidden bg-black">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       >
         <source
           src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4"

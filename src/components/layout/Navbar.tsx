@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 const links = [
   { label: 'Home', href: '/' },
@@ -24,7 +25,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-[#3A7A8A] shadow-lg' : 'bg-transparent'
+        scrolled || menuOpen ? 'bg-[#3A7A8A] shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className={`px-6 md:px-12 lg:px-16 flex items-center justify-between transition-all duration-500 ${
@@ -67,22 +68,18 @@ export const Navbar = () => {
             Contacto
           </Link>
           <button
-            className="lg:hidden text-white z-50 relative"
+            className="lg:hidden text-white z-50 relative p-2"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
           >
-            <div className="w-6 flex flex-col gap-1.5">
-              <span className={`block h-0.5 bg-white transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 bg-white transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 bg-white transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </div>
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed lg:hidden top-0 left-0 right-0 w-full bg-[#3A7A8A] backdrop-blur px-6 pt-32 md:pt-16 pb-6 animate-in slide-in-from-top duration-300 z-40 max-h-screen overflow-y-auto">
+        <div className="fixed lg:hidden top-0 left-0 right-0 w-full h-[100dvh] bg-[#3A7A8A] flex flex-col px-6 pt-32 pb-6 animate-in slide-in-from-top duration-300 z-40 overflow-y-auto">
           {links.map((link, i) => (
             <Link
               key={link.label}

@@ -83,30 +83,32 @@ export default function ContactoPage() {
             <div className="space-y-8">
               <div className="border-l-4 border-[#3A7A8A] pl-6">
                 <h3 className="font-serif text-lg text-gray-900 mb-2">Teléfono</h3>
-                <a href="tel:+525525303049" className="text-[#C96A3A] hover:underline">
+                <a href="tel:+525525303049" className="block text-[#C96A3A] hover:underline">
                   55 2530 3049
                 </a>
-                <br />
-                <a href="tel:+525581469882" className="text-[#C96A3A] hover:underline">
+                <a href="tel:+525581469882" className="block text-[#C96A3A] hover:underline">
                   55 81 46 98 82
+                </a>
+                <a href="tel:+525521395193" className="block text-[#C96A3A] hover:underline">
+                  55 2139 5193 (Bernardo Camacho Zavala)
                 </a>
               </div>
 
               <div className="border-l-4 border-[#3A7A8A] pl-6">
                 <h3 className="font-serif text-lg text-gray-900 mb-2">Email</h3>
-                <a href="mailto:mreyes@crza.com.mx" className="text-[#C96A3A] hover:underline">
+                <a href="mailto:mreyes@crza.com.mx" className="block text-[#C96A3A] hover:underline">
                   mreyes@crza.com.mx
+                </a>
+                <a href="mailto:bzavala@crza.com.mx" className="block text-[#C96A3A] hover:underline">
+                  bzavala@crza.com.mx (Bernardo Camacho Zavala)
                 </a>
               </div>
 
               <div className="border-l-4 border-[#3A7A8A] pl-6">
                 <h3 className="font-serif text-lg text-gray-900 mb-2">Dirección</h3>
                 <p className="text-gray-600">
-                  Avenida Río Churubusco 601<br />
-                  Coyoacán, CDMX<br />
-                  C.P. 03330<br />
-                  Piso 10, oficina 111<br />
-                  Torre Mitikah
+                  Ciudad de México<br />
+                  <span className="text-xs italic text-gray-400">(Dirección en actualización)</span>
                 </p>
               </div>
 
