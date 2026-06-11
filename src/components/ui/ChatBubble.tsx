@@ -1,7 +1,79 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
 
 const AGENT_URL = import.meta.env.VITE_AGENT_URL ?? 'http://localhost:8000';
+const MAX_MSG_LEN = 620;
+
+function splitResponse(text: string): string[] {
+  if (text.length <= MAX_MSG_LEN) return [text];
+  const chunks: string[] = [];
+  let remaining = text.trim();
+  while (remaining.length > MAX_MSG_LEN) {
+    const slice = remaining.slice(0, MAX_MSG_LEN);
+    const boundary = Math.max(
+      slice.lastIndexOf('.\n'),
+      slice.lastIndexOf('\n\n'),
+      slice.lastIndexOf('. '),
+      slice.lastIndexOf('! '),
+      slice.lastIndexOf('? '),
+      slice.lastIndexOf('\n'),
+    );
+    const cut = boundary > MAX_MSG_LEN * 0.4 ? boundary + 1 : MAX_MSG_LEN;
+    chunks.push(remaining.slice(0, cut).trim());
+    remaining = remaining.slice(cut).trim();
+  }
+  if (remaining) chunks.push(remaining);
+  return chunks.filter(Boolean);
+}
+
+function renderInline(text: string, key?: number) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/g);
+  return (
+    <span key={key}>
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**'))
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        if (part.startsWith('*') && part.endsWith('*'))
+          return <em key={i}>{part.slice(1, -1)}</em>;
+        return <span key={i}>{part}</span>;
+      })}
+    </span>
+  );
+}
+
+function renderMarkdown(text: string) {
+  const lines = text.split('\n');
+  const result: React.ReactNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = () => {
+    if (listItems.length === 0) return;
+    result.push(
+      <ul key={`ul-${result.length}`} className="list-disc list-outside ml-4 space-y-0.5 my-1">
+        {listItems.map((item, i) => <li key={i}>{renderInline(item)}</li>)}
+      </ul>
+    );
+    listItems = [];
+  };
+
+  lines.forEach((line, i) => {
+    if (/^[*-] /.test(line)) {
+      listItems.push(line.slice(2));
+    } else {
+      flushList();
+      if (line.trim() === '' || /^---+$/.test(line.trim())) {
+        // skip blank lines and horizontal rules
+      } else if (/^#{1,3} /.test(line)) {
+        const text = line.replace(/^#{1,3} /, '');
+        result.push(<p key={`h-${i}`} className="font-semibold text-gray-900 leading-snug mt-1">{renderInline(text)}</p>);
+      } else {
+        result.push(<p key={`p-${i}`} className="leading-relaxed">{renderInline(line)}</p>);
+      }
+    }
+  });
+  flushList();
+  return result;
+}
 
 type Message = {
   role: 'user' | 'assistant';
@@ -19,6 +91,7 @@ export const ChatBubble = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (open) {
@@ -34,6 +107,9 @@ export const ChatBubble = () => {
     const userMsg: Message = { role: 'user', content: text };
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '36px';
+    }
     setLoading(true);
 
     try {
@@ -43,10 +119,11 @@ export const ChatBubble = () => {
         body: JSON.stringify({ message: text, history }),
       });
       const data = await res.json();
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: data.response },
-      ]);
+      const chunks = splitResponse(data.response);
+      for (let i = 0; i < chunks.length; i++) {
+        if (i > 0) await new Promise((r) => setTimeout(r, 500));
+        setMessages((prev) => [...prev, { role: 'assistant', content: chunks[i] }]);
+      }
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -71,7 +148,7 @@ export const ChatBubble = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Chat panel */}
       {open && (
-        <div className="w-80 h-[460px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <div className="w-[420px] h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-black px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div>
@@ -100,7 +177,7 @@ export const ChatBubble = () => {
                       : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm shadow-sm'
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
                 </div>
               </div>
             ))}
@@ -115,19 +192,26 @@ export const ChatBubble = () => {
           </div>
 
           {/* Input */}
-          <div className="px-3 py-3 border-t border-gray-100 bg-white flex gap-2 flex-shrink-0">
-            <input
+          <div className="px-3 py-3 border-t border-gray-100 bg-white flex items-end gap-2 flex-shrink-0">
+            <textarea
+              ref={textareaRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                e.target.style.height = 'auto';
+                e.target.style.height = Math.min(e.target.scrollHeight, 72) + 'px';
+              }}
               onKeyDown={handleKey}
               placeholder="Escribe tu pregunta..."
-              className="flex-1 text-sm border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-[#C96A3A] transition-colors"
+              rows={1}
+              style={{ height: '36px', resize: 'none', overflow: 'hidden' }}
+              className="flex-1 text-sm text-gray-900 bg-white placeholder:text-gray-400 border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-[#C96A3A] transition-colors leading-5"
               disabled={loading}
             />
             <button
               onClick={send}
               disabled={!input.trim() || loading}
-              className="w-9 h-9 bg-[#C96A3A] text-white rounded-lg flex items-center justify-center hover:bg-[#B95A2A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
+              className="w-9 h-9 bg-[#C96A3A] text-white rounded-lg flex items-center justify-center hover:bg-[#B95A2A] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0 mb-0"
             >
               <Send size={15} />
             </button>
