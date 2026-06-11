@@ -3,7 +3,7 @@ export const Footer = () => (
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
       {/* Logo */}
       <div className="lg:col-span-1">
-        <img src="/assets/logo-blanco.png" alt="CRZA" className="h-56 object-contain mb-4" />
+        <img src="/assets/logo-blanco.png" alt="CRZA" className="h-20 object-contain mb-4" />
         <p className="text-white/50 text-xs leading-relaxed">
           Firma de abogados especialistas en análisis, mitigación y administración de Riesgo Legal. 3 continentes, 4 países, 87+ ciudades.
         </p>

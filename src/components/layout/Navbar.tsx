@@ -37,7 +37,7 @@ export const Navbar = () => {
             src="/assets/logo-blanco.png"
             alt="Cuenca Reyes Zavala & Asociados"
             className={`object-contain transition-all duration-500 ${
-              scrolled ? 'h-12 md:h-14' : 'h-32 md:h-48'
+              scrolled ? 'h-12 md:h-14' : 'h-16 md:h-28 lg:h-36'
             }`}
           />
         </Link>
