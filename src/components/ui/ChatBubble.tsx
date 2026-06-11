@@ -85,7 +85,7 @@ export const ChatBubble = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: '¡Hola! Soy el asistente de CRZ//A Abogados. ¿En qué puedo ayudarte hoy?',
+      content: '¡Hola! Soy el asistente de CRZA. ¿En qué puedo ayudarte hoy?',
     },
   ]);
   const [input, setInput] = useState('');
@@ -152,7 +152,7 @@ export const ChatBubble = () => {
           {/* Header */}
           <div className="bg-black px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div>
-              <p className="text-white font-semibold text-sm">CRZ//A Asistente</p>
+              <p className="text-white font-semibold text-sm">CRZA Asistente</p>
               <p className="text-gray-400 text-xs">Inteligencia Legal</p>
             </div>
             <button
