@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
+import { ChatBubble } from './components/ui/ChatBubble';
 import HomePage from './pages/Home';
 import LaFirmaPage from './pages/LaFirma';
 import AreasPracticaPage from './pages/AreasPractica';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contacto" element={<ContactoPage />} />
       </Routes>
       <Footer />
+      <ChatBubble />
     </BrowserRouter>
   );
 }

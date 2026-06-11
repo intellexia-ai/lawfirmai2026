@@ -17,10 +17,10 @@ export const CtaSection = () => {
             Conoce más sobre nuestro servicio especializado
           </p>
           <a
-            href="#areas"
+            href="/contacto"
             className="inline-block bg-[#C96A3A] text-white px-8 py-3 rounded-full font-medium hover:bg-[#B95A2A] transition-colors"
           >
-            Leer más
+            Contáctanos
           </a>
         </div>
 
