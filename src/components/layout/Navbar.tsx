@@ -4,10 +4,10 @@ import { Menu, X } from 'lucide-react';
 
 const links = [
   { label: 'Home', href: '/' },
-  { label: 'La firma', href: '/la-firma' },
+  { label: 'La Firma', href: '/la-firma' },
   { label: 'Áreas de Práctica', href: '/areas-practica' },
-  { label: 'Proyectos de Inversión', href: '/proyectos' },
-  { label: 'Servicios Especializados', href: '/servicios' },
+  { label: 'Hub de Inversión', href: '/hub-inversion' },
+  { label: 'Simulador IA', href: '/simulador' },
   { label: 'Medios y Noticias', href: '/noticias' },
   { label: 'Contacto', href: '/contacto' },
 ];
