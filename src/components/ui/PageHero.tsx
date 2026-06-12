@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const PageHero = ({ title, subtitle, videoUrl, imageUrl, height = 'h-96' }: Props) => (
-  <div className={`relative w-full ${height} overflow-hidden bg-gray-900 mt-0 md:mt-16`}>
+  <div className={`relative w-full ${height} overflow-hidden bg-gray-900`}>
     {imageUrl ? (
       <img
         src={imageUrl}
