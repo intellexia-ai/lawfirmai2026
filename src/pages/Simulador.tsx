@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/ui/PageHero';
-import { Loader2, Sparkles, ArrowRight } from 'lucide-react';
+import { Loader2, Sparkles, ArrowRight, Download } from 'lucide-react';
+import jsPDF from 'jspdf';
 
 const AGENT_URL = import.meta.env.VITE_AGENT_URL ?? 'http://localhost:8000';
 
@@ -96,6 +97,66 @@ export default function SimuladorPage() {
   const [error, setError] = useState(false);
 
   const canSubmit = pais && sector && prioridad && !loading;
+
+  const downloadPdf = () => {
+    if (!result) return;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const margin = 20;
+    const pageW = 210;
+    const contentW = pageW - margin * 2;
+
+    // Header bar
+    doc.setFillColor(26, 26, 46);
+    doc.rect(0, 0, pageW, 28, 'F');
+
+    // Logo text
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(255, 255, 255);
+    doc.text('CRZ//A Abogados', margin, 13);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(201, 106, 58);
+    doc.text('Análisis de Expansión Transnacional — Agente Senior IA', margin, 21);
+
+    // Params block
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`País: ${pais}   ·   Sector: ${sector}   ·   Prioridad: ${prioridad}`, margin, 38);
+
+    // Divider
+    doc.setDrawColor(201, 106, 58);
+    doc.setLineWidth(0.5);
+    doc.line(margin, 42, pageW - margin, 42);
+
+    // Body
+    const clean = result.replace(/\*\*/g, '');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(50, 50, 50);
+    const lines = doc.splitTextToSize(clean, contentW);
+    let y = 50;
+    for (const line of lines) {
+      if (y > 272) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.text(line, margin, y);
+      y += 5;
+    }
+
+    // Footer
+    doc.setFontSize(7);
+    doc.setTextColor(160, 160, 160);
+    doc.text('Este análisis es orientativo. Para una evaluación completa agenda una consulta con nuestros especialistas — crza.com.mx', margin, 287);
+
+    doc.save(`CRZA-Analisis-${pais.replace(/\s/g, '-')}.pdf`);
+  };
+
+  const handleAgendarConsulta = () => {
+    if (!result) return;
+    sessionStorage.setItem('crza_analisis', JSON.stringify({ pais, sector, prioridad, result }));
+  };
 
   const simulate = async () => {
     if (!canSubmit) return;
@@ -283,11 +344,19 @@ export default function SimuladorPage() {
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Link
                         to="/contacto"
+                        onClick={handleAgendarConsulta}
                         className="inline-flex items-center justify-center gap-2 bg-[#C96A3A] text-white px-6 py-3 rounded-xl font-semibold text-sm hover:bg-[#B95A2A] transition-colors"
                       >
                         Agendar Consulta
                         <ArrowRight size={15} />
                       </Link>
+                      <button
+                        onClick={downloadPdf}
+                        className="inline-flex items-center justify-center gap-2 border border-[#3A7A8A] text-[#3A7A8A] px-6 py-3 rounded-xl text-sm font-semibold hover:bg-[#3A7A8A]/5 transition-colors"
+                      >
+                        <Download size={15} />
+                        Descargar PDF
+                      </button>
                       <button
                         onClick={() => { setResult(null); setPais(''); setSector(''); setPrioridad(''); }}
                         className="inline-flex items-center justify-center gap-2 border border-gray-200 text-gray-600 px-6 py-3 rounded-xl text-sm hover:bg-gray-100 transition-colors"

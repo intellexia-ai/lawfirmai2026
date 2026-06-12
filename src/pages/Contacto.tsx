@@ -1,9 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PageHero } from '../components/ui/PageHero';
 import { FadeIn } from '../components/ui/FadeIn';
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: '', email: '', asunto: '', mensaje: '' });
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem('crza_analisis');
+    if (stored) {
+      try {
+        const data = JSON.parse(stored);
+        setForm(prev => ({
+          ...prev,
+          asunto: `Consulta — Análisis IA: ${data.pais} / ${data.sector}`,
+          mensaje: `Solicito una consulta sobre el análisis generado por el Agente CRZ//A:\n\nPaís de origen: ${data.pais}\nSector: ${data.sector}\nPrioridad: ${data.prioridad}\n\n---\nResumen del análisis:\n\n${data.result?.replace(/\*\*/g, '')}`,
+        }));
+        sessionStorage.removeItem('crza_analisis');
+      } catch { /* ignore */ }
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
