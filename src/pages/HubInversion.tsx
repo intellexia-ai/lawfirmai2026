@@ -151,7 +151,9 @@ export default function HubInversionPage() {
         title="Hub de Inversión & Inteligencia Comercial"
         subtitle="Socio estratégico en la nueva economía transnacional — de la asesoría jurídica al ciclo completo de inversión"
         imageUrl="/assets/hub-hero.png"
+        imagePosition="center 65%"
         height="h-screen"
+        textPosition="center"
       />
 
       {/* Paradigma */}

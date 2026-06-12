@@ -3,16 +3,27 @@ interface Props {
   subtitle?: string;
   videoUrl?: string;
   imageUrl?: string;
+  imagePosition?: string;
   height?: string;
+  textPosition?: 'center' | 'bottom';
 }
 
-export const PageHero = ({ title, subtitle, videoUrl, imageUrl, height = 'h-96' }: Props) => (
+export const PageHero = ({
+  title,
+  subtitle,
+  videoUrl,
+  imageUrl,
+  imagePosition = 'center center',
+  height = 'h-96',
+  textPosition = 'bottom',
+}: Props) => (
   <div className={`relative w-full ${height} overflow-hidden bg-gray-900`}>
     {imageUrl ? (
       <img
         src={imageUrl}
         alt=""
         className="absolute inset-0 w-full h-full object-cover opacity-80"
+        style={{ objectPosition: imagePosition }}
       />
     ) : videoUrl ? (
       <video
@@ -33,7 +44,13 @@ export const PageHero = ({ title, subtitle, videoUrl, imageUrl, height = 'h-96' 
       </video>
     ) : null}
     <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-black/40 to-black" />
-    <div className="relative z-10 h-full flex flex-col justify-center pt-24 md:pt-0 px-6 md:px-12 lg:px-16">
+    <div
+      className={`relative z-10 h-full flex flex-col px-6 md:px-12 lg:px-16 ${
+        textPosition === 'bottom'
+          ? 'justify-end pb-12 pt-24'
+          : 'justify-center pt-28 md:pt-24'
+      }`}
+    >
       <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
         {title}
       </h1>
