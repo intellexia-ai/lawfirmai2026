@@ -61,7 +61,7 @@ export const FirmaIntro = () => {
   return (
     <section id="firma-intro" className="bg-white py-20 px-6 md:px-12 lg:px-16" ref={ref}>
       {/* Headline */}
-      <div className={`max-w-4xl mx-auto text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className={`max-w-6xl mx-auto text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-gray-900 leading-relaxed">
           Somos una Firma de profesionales del derecho, las relaciones internacionales, política pública y economistas comprometidos con la innovación constante y mejora en la prestación de{' '}
           <span className="text-[#C96A3A]">servicios legales de excelencia.</span>{' '}
