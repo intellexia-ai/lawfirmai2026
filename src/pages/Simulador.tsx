@@ -32,33 +32,58 @@ const prioridades = [
   { value: 'Comercio Exterior y Cumplimiento T-MEC', label: 'Comercio Exterior & T-MEC' },
 ];
 
+function renderInline(text: string, key?: number) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <span key={key}>
+      {parts.map((part, i) =>
+        part.startsWith('**') && part.endsWith('**')
+          ? <strong key={i}>{part.slice(2, -2)}</strong>
+          : <span key={i}>{part}</span>
+      )}
+    </span>
+  );
+}
+
 function renderSimResult(text: string) {
   const lines = text.split('\n');
   return lines.map((line, i) => {
     if (line.trim() === '') return <div key={i} className="h-3" />;
-    if (line.startsWith('**') && line.endsWith('**')) {
-      return <p key={i} className="font-semibold text-gray-900 mt-4 mb-1">{line.slice(2, -2)}</p>;
-    }
-    if (/^\*\*(.+)\*\*/.test(line)) {
+
+    // Heading lines: whole line is bold (e.g. **1. Marco regulatorio**)
+    if (/^\*\*[^*]+\*\*$/.test(line.trim())) {
       return (
-        <p key={i} className="text-gray-700 text-sm leading-relaxed">
-          {line.split(/(\*\*[^*]+\*\*)/).map((part, j) =>
-            part.startsWith('**') && part.endsWith('**')
-              ? <strong key={j}>{part.slice(2, -2)}</strong>
-              : part
-          )}
+        <p key={i} className="font-semibold text-gray-900 mt-5 mb-1 text-base">
+          {line.trim().slice(2, -2)}
         </p>
       );
     }
-    if (/^[-•] /.test(line)) {
+
+    // Numbered headings without bold: "1. Texto"
+    if (/^\d+\.\s/.test(line.trim())) {
+      return (
+        <p key={i} className="font-semibold text-gray-900 mt-5 mb-1 text-base">
+          {renderInline(line.trim())}
+        </p>
+      );
+    }
+
+    // List items — render inline bold inside them
+    if (/^[-•*]\s/.test(line)) {
       return (
         <li key={i} className="flex items-start gap-2 text-sm text-gray-700 ml-2">
           <span className="text-[#C96A3A] mt-1 flex-shrink-0">·</span>
-          <span>{line.slice(2)}</span>
+          <span>{renderInline(line.slice(2))}</span>
         </li>
       );
     }
-    return <p key={i} className="text-gray-700 text-sm leading-relaxed">{line}</p>;
+
+    // Regular paragraph with possible inline bold
+    return (
+      <p key={i} className="text-gray-700 text-sm leading-relaxed">
+        {renderInline(line)}
+      </p>
+    );
   });
 }
 
