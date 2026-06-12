@@ -150,7 +150,7 @@ export default function HubInversionPage() {
       <PageHero
         title="Hub de Inversión & Inteligencia Comercial"
         subtitle="Socio estratégico en la nueva economía transnacional — de la asesoría jurídica al ciclo completo de inversión"
-        videoUrl="https://videos.pexels.com/video-files/5721485/5721485-hd_1280_720_30fps.mp4"
+        imageUrl="/assets/hub-hero.png"
         height="h-screen"
       />
 
