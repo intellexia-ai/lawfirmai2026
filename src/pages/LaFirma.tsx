@@ -187,8 +187,8 @@ function BioModal({ member, onClose }: { member: TeamMemberType; onClose: () => 
             className="w-24 h-24 rounded-full mb-5 overflow-hidden"
             style={{
               backgroundImage: `url(${member.photo})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center top',
+              backgroundSize: '130%',
+              backgroundPosition: 'center 15%',
             }}
           />
         )}
@@ -308,8 +308,8 @@ export default function LaFirmaPage() {
                         className="w-20 h-20 rounded-full mb-4 mx-auto overflow-hidden flex-shrink-0"
                         style={{
                           backgroundImage: `url(${member.photo})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center top',
+                          backgroundSize: '130%',
+                          backgroundPosition: 'center 15%',
                         }}
                       />
                     )}
