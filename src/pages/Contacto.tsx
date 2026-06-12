@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PageHero } from '../components/ui/PageHero';
 import { FadeIn } from '../components/ui/FadeIn';
+import { Paperclip, X, FileText } from 'lucide-react';
 
 export default function ContactoPage() {
   const [form, setForm] = useState({ nombre: '', email: '', asunto: '', mensaje: '' });
+  const [archivo, setArchivo] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const stored = sessionStorage.getItem('crza_analisis');
@@ -13,8 +16,16 @@ export default function ContactoPage() {
         setForm(prev => ({
           ...prev,
           asunto: `Consulta — Análisis IA: ${data.pais} / ${data.sector}`,
-          mensaje: `Solicito una consulta sobre el análisis generado por el Agente CRZ//A:\n\nPaís de origen: ${data.pais}\nSector: ${data.sector}\nPrioridad: ${data.prioridad}\n\n---\nResumen del análisis:\n\n${data.result?.replace(/\*\*/g, '')}`,
+          mensaje: `Solicito una consulta sobre el análisis generado por el Agente CRZ//A:\n\nPaís de origen: ${data.pais}\nSector: ${data.sector}\nPrioridad: ${data.prioridad}`,
         }));
+        if (data.pdfBase64 && data.pdfName) {
+          const base64 = data.pdfBase64.split(',')[1];
+          const binary = atob(base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+          const blob = new Blob([bytes], { type: 'application/pdf' });
+          setArchivo(new File([blob], data.pdfName, { type: 'application/pdf' }));
+        }
         sessionStorage.removeItem('crza_analisis');
       } catch { /* ignore */ }
     }
@@ -82,6 +93,47 @@ export default function ContactoPage() {
                   required
                 />
               </div>
+
+              {/* Adjunto */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Archivo adjunto</label>
+                {archivo ? (
+                  <div className="flex items-center gap-3 bg-[#3A7A8A]/5 border border-[#3A7A8A]/20 rounded-lg px-4 py-3">
+                    <FileText size={18} className="text-[#3A7A8A] flex-shrink-0" />
+                    <span className="text-sm text-gray-700 flex-1 truncate">{archivo.name}</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">
+                      {(archivo.size / 1024).toFixed(0)} KB
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setArchivo(null)}
+                      className="text-gray-400 hover:text-gray-700 transition-colors flex-shrink-0"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-2 text-sm text-[#3A7A8A] border border-dashed border-[#3A7A8A]/40 rounded-lg px-4 py-3 w-full hover:bg-[#3A7A8A]/5 transition-colors"
+                  >
+                    <Paperclip size={16} />
+                    Adjuntar archivo (PDF, DOC, imagen…)
+                  </button>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) setArchivo(f);
+                  }}
+                />
+              </div>
+
               <button
                 type="submit"
                 className="w-full bg-[#C96A3A] text-white py-3 rounded-lg font-medium hover:bg-[#B95A2A] transition-colors"

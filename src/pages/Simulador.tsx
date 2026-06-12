@@ -98,18 +98,14 @@ export default function SimuladorPage() {
 
   const canSubmit = pais && sector && prioridad && !loading;
 
-  const downloadPdf = () => {
-    if (!result) return;
+  const buildPdf = () => {
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const margin = 20;
     const pageW = 210;
     const contentW = pageW - margin * 2;
 
-    // Header bar
     doc.setFillColor(26, 26, 46);
     doc.rect(0, 0, pageW, 28, 'F');
-
-    // Logo text
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
     doc.setTextColor(255, 255, 255);
@@ -119,43 +115,47 @@ export default function SimuladorPage() {
     doc.setTextColor(201, 106, 58);
     doc.text('Análisis de Expansión Transnacional — Agente Senior IA', margin, 21);
 
-    // Params block
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.text(`País: ${pais}   ·   Sector: ${sector}   ·   Prioridad: ${prioridad}`, margin, 38);
 
-    // Divider
     doc.setDrawColor(201, 106, 58);
     doc.setLineWidth(0.5);
     doc.line(margin, 42, pageW - margin, 42);
 
-    // Body
-    const clean = result.replace(/\*\*/g, '');
+    const clean = (result ?? '').replace(/\*\*/g, '');
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     const lines = doc.splitTextToSize(clean, contentW);
     let y = 50;
     for (const line of lines) {
-      if (y > 272) {
-        doc.addPage();
-        y = 20;
-      }
+      if (y > 272) { doc.addPage(); y = 20; }
       doc.text(line, margin, y);
       y += 5;
     }
 
-    // Footer
     doc.setFontSize(7);
     doc.setTextColor(160, 160, 160);
     doc.text('Este análisis es orientativo. Para una evaluación completa agenda una consulta con nuestros especialistas — crza.com.mx', margin, 287);
 
-    doc.save(`CRZA-Analisis-${pais.replace(/\s/g, '-')}.pdf`);
+    return doc;
+  };
+
+  const pdfName = () => `CRZA-Analisis-${pais.replace(/\s/g, '-')}.pdf`;
+
+  const downloadPdf = () => {
+    if (!result) return;
+    buildPdf().save(pdfName());
   };
 
   const handleAgendarConsulta = () => {
     if (!result) return;
-    sessionStorage.setItem('crza_analisis', JSON.stringify({ pais, sector, prioridad, result }));
+    const doc = buildPdf();
+    const pdfBase64 = doc.output('datauristring');
+    sessionStorage.setItem('crza_analisis', JSON.stringify({
+      pais, sector, prioridad, result, pdfBase64, pdfName: pdfName(),
+    }));
   };
 
   const simulate = async () => {
