@@ -1,5 +1,6 @@
 import { useInView } from '../../hooks/useInView';
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 
 const timeline = [
@@ -85,12 +86,12 @@ export const FirmaIntro = () => {
               <h3 className="font-serif text-xl text-gray-900 mb-3">{item.title}</h3>
               <p className="text-sm text-gray-600 leading-relaxed">{preview}</p>
               {isLong && (
-                <button
-                  onClick={() => setSelected(item)}
-                  className="mt-2 text-sm font-medium text-[#C96A3A] hover:text-[#B95A2A] transition-colors"
+                <Link
+                  to="/contacto"
+                  className="mt-2 inline-block text-sm font-medium text-[#C96A3A] hover:text-[#B95A2A] transition-colors"
                 >
-                  Leer más →
-                </button>
+                  Contáctanos →
+                </Link>
               )}
             </div>
           );

@@ -6,7 +6,7 @@ const links = [
   { label: 'Home', href: '/' },
   { label: 'La Firma', href: '/la-firma' },
   { label: 'Áreas de Práctica', href: '/areas-practica' },
-  { label: 'Hub de Inversión', href: '/hub-inversion' },
+  { label: 'Hub de Inteligencia Comercial y Desarrollo de Negocios', href: '/hub-inversion' },
   { label: 'Nuestro Agente', href: '/simulador' },
   { label: 'Medios y Noticias', href: '/noticias' },
   { label: 'Contacto', href: '/contacto' },
