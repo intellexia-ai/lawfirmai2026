@@ -9,7 +9,6 @@ const links = [
   { label: 'Hub de Inteligencia Comercial y Desarrollo de Negocios', href: '/hub-inversion' },
   { label: 'Nuestro Agente', href: '/simulador' },
   { label: 'Medios y Noticias', href: '/noticias' },
-  { label: 'Contacto', href: '/contacto' },
 ];
 
 export const Navbar = () => {
@@ -43,7 +42,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-8">
           {links.map((link) => (
             <Link
               key={link.label}
