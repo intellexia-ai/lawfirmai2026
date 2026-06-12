@@ -98,37 +98,50 @@ export default function SimuladorPage() {
 
   const canSubmit = pais && sector && prioridad && !loading;
 
-  const buildPdf = () => {
+  const buildPdf = async () => {
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
     const margin = 20;
     const pageW = 210;
     const contentW = pageW - margin * 2;
 
     doc.setFillColor(26, 26, 46);
-    doc.rect(0, 0, pageW, 28, 'F');
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(16);
-    doc.setTextColor(255, 255, 255);
-    doc.text('CRZ//A Abogados', margin, 13);
+    doc.rect(0, 0, pageW, 30, 'F');
+
+    try {
+      const res = await fetch('/assets/logo-blanco.png');
+      const blob = await res.blob();
+      const logoB64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+      doc.addImage(logoB64, 'PNG', margin, 4, 50, 22);
+    } catch {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.setTextColor(255, 255, 255);
+      doc.text('CRZ//A Abogados', margin, 15);
+    }
+
     doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(201, 106, 58);
-    doc.text('Análisis de Expansión Transnacional — Agente Senior IA', margin, 21);
+    doc.text('Análisis de Expansión Transnacional — Agente Senior IA', margin, 25);
 
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
-    doc.text(`País: ${pais}   ·   Sector: ${sector}   ·   Prioridad: ${prioridad}`, margin, 38);
+    doc.text(`País: ${pais}   ·   Sector: ${sector}   ·   Prioridad: ${prioridad}`, margin, 40);
 
     doc.setDrawColor(201, 106, 58);
     doc.setLineWidth(0.5);
-    doc.line(margin, 42, pageW - margin, 42);
+    doc.line(margin, 44, pageW - margin, 44);
 
     const clean = (result ?? '').replace(/\*\*/g, '');
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     const lines = doc.splitTextToSize(clean, contentW);
-    let y = 50;
+    let y = 52;
     for (const line of lines) {
       if (y > 272) { doc.addPage(); y = 20; }
       doc.text(line, margin, y);
@@ -144,14 +157,15 @@ export default function SimuladorPage() {
 
   const pdfName = () => `CRZA-Analisis-${pais.replace(/\s/g, '-')}.pdf`;
 
-  const downloadPdf = () => {
+  const downloadPdf = async () => {
     if (!result) return;
-    buildPdf().save(pdfName());
+    const doc = await buildPdf();
+    doc.save(pdfName());
   };
 
-  const handleAgendarConsulta = () => {
+  const handleAgendarConsulta = async () => {
     if (!result) return;
-    const doc = buildPdf();
+    const doc = await buildPdf();
     const pdfBase64 = doc.output('datauristring');
     sessionStorage.setItem('crza_analisis', JSON.stringify({
       pais, sector, prioridad, result, pdfBase64, pdfName: pdfName(),

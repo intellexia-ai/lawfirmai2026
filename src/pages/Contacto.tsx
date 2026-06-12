@@ -188,17 +188,6 @@ export default function ContactoPage() {
                 </p>
               </div>
 
-              <div className="flex gap-4 pt-4">
-                {['LinkedIn', 'Twitter', 'Facebook'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-[#3A7A8A] text-white flex items-center justify-center hover:bg-[#2A6A7A] transition-colors text-sm"
-                  >
-                    {social[0]}
-                  </a>
-                ))}
-              </div>
             </div>
           </FadeIn>
         </div>
