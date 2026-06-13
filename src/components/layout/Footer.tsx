@@ -45,11 +45,6 @@ export const Footer = () => (
     {/* Bottom */}
     <div className="max-w-7xl mx-auto pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <p className="text-white/30 text-xs">© 2026 Cuenca Reyes Zavala & Asociados. Todos los derechos reservados.</p>
-      <div className="flex gap-4">
-        {['LinkedIn', 'Twitter', 'Facebook'].map((s) => (
-          <a key={s} href="#" className="text-white/40 hover:text-white text-xs transition-colors">{s}</a>
-        ))}
-      </div>
     </div>
   </footer>
 );
