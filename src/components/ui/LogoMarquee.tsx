@@ -18,14 +18,14 @@ export function LogoMarquee({ logos, duration = 40 }: LogoMarqueeProps) {
 
   return (
     <div
-      className="group relative w-full overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{
         maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
         WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
       }}
     >
       <div
-        className="flex w-max animate-marquee items-center group-hover:[animation-play-state:paused]"
+        className="flex w-max animate-marquee items-center"
         style={{ ['--marquee-duration' as string]: `${duration}s` }}
       >
         {items.map((item, i) => (
@@ -36,7 +36,7 @@ export function LogoMarquee({ logos, duration = 40 }: LogoMarqueeProps) {
             <img
               src={item.logo}
               alt={item.name}
-              className="max-h-full max-w-full object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+              className="max-h-12 max-w-full object-contain transition-transform duration-300 hover:scale-125"
             />
           </div>
         ))}
