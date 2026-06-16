@@ -28,10 +28,11 @@ export const Footer = () => (
       {/* Contacto */}
       <div>
         <h4 className="text-white/40 text-xs uppercase tracking-widest mb-4">Contacto</h4>
-        <p className="text-white/70 text-sm mb-1">55 2530 3049 | 55 81 46 98 82</p>
+        <p className="text-white/70 text-sm mb-1">56 3699 6662</p>
         <p className="text-white/70 text-sm mb-1">mreyes@crza.com.mx</p>
+        <p className="text-white/70 text-sm mb-1">bzavala@crza.com.mx</p>
         <p className="text-white/50 text-xs mt-3 leading-relaxed">
-          Avenida Río Churubusco 601, Coyoacán, CDMX, C.P. 03330, Piso 10, oficina 111, Torre Mitikah
+          Av. P.º de la Reforma 560, Lomas - Virreyes, Lomas de Chapultepec, Miguel Hidalgo, 11000 Ciudad de México, CDMX
         </p>
         <a
           href="mailto:mreyes@crza.com.mx"

@@ -150,14 +150,8 @@ export default function ContactoPage() {
             <div className="space-y-8">
               <div className="border-l-4 border-[#3A7A8A] pl-6">
                 <h3 className="font-serif text-lg text-gray-900 mb-2">Teléfono</h3>
-                <a href="tel:+525525303049" className="block text-[#C96A3A] hover:underline">
-                  55 2530 3049
-                </a>
-                <a href="tel:+525581469882" className="block text-[#C96A3A] hover:underline">
-                  55 81 46 98 82
-                </a>
-                <a href="tel:+525521395193" className="block text-[#C96A3A] hover:underline">
-                  55 2139 5193 (Bernardo Camacho Zavala)
+                <a href="tel:+5256369966622" className="block text-[#C96A3A] hover:underline">
+                  56 3699 6662
                 </a>
               </div>
 
@@ -167,15 +161,16 @@ export default function ContactoPage() {
                   mreyes@crza.com.mx
                 </a>
                 <a href="mailto:bzavala@crza.com.mx" className="block text-[#C96A3A] hover:underline">
-                  bzavala@crza.com.mx (Bernardo Camacho Zavala)
+                  bzavala@crza.com.mx
                 </a>
               </div>
 
               <div className="border-l-4 border-[#3A7A8A] pl-6">
                 <h3 className="font-serif text-lg text-gray-900 mb-2">Dirección</h3>
                 <p className="text-gray-600">
-                  Ciudad de México<br />
-                  <span className="text-xs italic text-gray-400">(Dirección en actualización)</span>
+                  Av. P.º de la Reforma 560, Lomas - Virreyes,<br />
+                  Lomas de Chapultepec, Miguel Hidalgo,<br />
+                  11000 Ciudad de México, CDMX
                 </p>
               </div>
 
