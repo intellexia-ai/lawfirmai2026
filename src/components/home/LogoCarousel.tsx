@@ -18,13 +18,11 @@ const clients: Logo[] = [
   { name: 'GEN', logo: '/clientes/gen.png' },
   { name: 'Böhler', logo: '/clientes/bohler.png' },
   { name: 'Antolin', logo: '/clientes/antolin.png' },
-  { name: 'Bontu', logo: '/clientes/bontu.png' },
   { name: 'Perseus', logo: '/clientes/perseus.png' },
   { name: 'LS telcom', logo: '/clientes/ls-telcom.png' },
   { name: 'NEC', logo: '/clientes/nec.png' },
   { name: 'U.S. Meat Export Federation', logo: '/clientes/us-meat-export-federation.png' },
   { name: 'Marhnos', logo: '/clientes/marhnos.png' },
-  { name: 'Alpha Credit', logo: '/clientes/alpha-credit.png' },
 ];
 
 const alliances: Logo[] = [
