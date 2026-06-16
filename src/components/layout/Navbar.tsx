@@ -42,7 +42,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {links.map((link) => (
             <Link
               key={link.label}
@@ -57,7 +57,7 @@ export const Navbar = () => {
         </div>
 
         {/* CTA + Hamburger */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-shrink-0 ml-4">
           <Link
             to="/contacto"
             className={`hidden md:inline-block bg-[#C96A3A] text-white rounded-full font-medium hover:bg-[#B95A2A] transition-all duration-500 ${
