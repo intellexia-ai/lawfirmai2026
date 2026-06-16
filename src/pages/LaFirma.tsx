@@ -60,7 +60,7 @@ const teamCategories: { label: string; members: TeamMemberType[] }[] = [
         name: 'Mauricio Jaramillo Reyes',
         role: 'Socio Fundador & Director General',
         category: 'Socio',
-        photo: '/team/mauricio-jaramillo.png',
+        // photo: '/team/mauricio-jaramillo.png', // TODO: reactivar cuando tengamos todas las fotos
         brief: 'Consultor internacional con más de 14 años de experiencia en proyectos de inversión y comercio internacional. Miembro acreditado de ASTUREX y la WFZO. Ponente invitado por el BID, la Dubai Chamber y la USMCOC. Áreas: Inversión Extranjera, Comercio Internacional y Proyectos.',
         bio: 'Es consultor internacional con más de 14 años de experiencia en el desarrollo de proyectos de inversión en el comercio internacional, miembro oficialmente acreditado en la Red Exterior de ASTUREX; miembro asociado en la WFZO, con sede en Dubái; autor intelectual del Hub de Comercio Internacional para la Cámara México – Estados Unidos, Capítulo Valle de México y ponente en las jornadas de capacitación en dicho organismo.\n\nEs licenciado en Derecho por la Universidad La Salle, cuenta con estudios de postgrado en Derecho Tributario por la Escuela Libre de Derecho y estudios de comercio internacional por la Cámara de Comercio Internacional (ICC México), así como capacitación del Banco Interamericano de Desarrollo en temas de Inversión Extranjera Directa para América Latina y el Caribe y el desarrollo e impulso de Agencias Promotoras de Inversiones. Ha impartido conferencias en México, España y China, por invitación directa del BID; el CCPIT; la Dubai Chamber of Commerce & Industry; la Cámara de Comercio e Industria de Navegación de Gijón; la USMCOC, entre otros organismos internacionales.\n\nProyectos y Actividades Profesionales: Presidente del Grupo de Alto Nivel en Comercio e Inversión en la USMCOC Capítulo Valle de México. Socio Fundador del Centro de Cooperación y Negocios México–China en alianza con la Red Global Mx, Capítulo BJ (Organismo autónomo de la SRE). Delegado mexicano en el "Global Business Forum Latin America 2019" en la Ciudad de Panamá y en la "XII Cumbre Empresarial CHINA-LAC" en Zhuhai, China. Asesor para México en la Red Exterior de ASTUREX.\n\nÁreas de Práctica: Inversión Extranjera y Comercio Internacional, Proyectos Internacionales, Infraestructura.',
       },
@@ -77,7 +77,7 @@ const teamCategories: { label: string; members: TeamMemberType[] }[] = [
         name: 'Dr. Arturo Flores López',
         role: 'Gobernanza e Internacionalización',
         category: 'Socio',
-        photo: '/team/arturo-flores.png',
+        // photo: '/team/arturo-flores.png', // TODO: reactivar cuando tengamos todas las fotos
         brief: 'Consejero en Infraestructura y Políticas Públicas. PhD. en Políticas Públicas por la Universidad de York, Reino Unido. Director del proyecto ECOSCIM financiado por el Newton Fund y CONACYT.',
         bio: 'Consejero en Infraestructura y Políticas Públicas. PhD. en Políticas Públicas por la Universidad de York, Reino Unido, con Maestría en Administración Pública y Políticas Públicas de la misma universidad y Licenciatura en Estudios Internacionales por la Universidad de Monterrey.\n\nActualmente es Director del proyecto de investigación Empowering Citizen-Oriented Smart City Innovation in Mexico (ECOSCIM), financiado por el Economic and Social Research Council, Newton Fund y CONACYT (Convocatoria CONACYT-ESRC 2018), en el que participan la Universidad Anáhuac Campus Norte y la Universidad de Bristol, Reino Unido. Funge como integrante de la Junta de Gobierno de la Urban Affairs Association, con sede en los Estados Unidos.\n\nHa desarrollado proyectos y asesorado a clientes del sector y participado en Foros y Congresos organizados por la Firma en México y España. Fue ponente en la Semana de la Innovación y la Tecnología organizada por la Firma con el apoyo del Instituto Económico del Principado de Asturias, España; CEEI Asturias; Invest Hong Kong y otros organismos internacionales de 5 países.\n\nÁreas de Práctica: Gobernanza, Internacionalización, Infraestructura y Políticas Públicas.',
       },
@@ -90,7 +90,7 @@ const teamCategories: { label: string; members: TeamMemberType[] }[] = [
         name: 'Iván Díaz',
         role: 'Ciberseguridad y Peritaje Informático',
         category: 'Of Counsel',
-        photo: '/team/ivan-diaz.png',
+        // photo: '/team/ivan-diaz.png', // TODO: reactivar cuando tengamos todas las fotos
         brief: 'CISO con 19+ años de trayectoria. Certificaciones CISSP, CISA, CISM, ISO 27001:2022. Perito registrado ante el Poder Judicial de la Federación.',
         bio: 'Especialista en Ciberseguridad, Protección de Datos y Peritaje Informático. CISO con 19+ años de trayectoria; certificaciones CISSP, CISA, CISM, ISO 27001:2022, CIPM-IAPP. Perito registrado ante el Poder Judicial de la Federación.',
       },
@@ -98,7 +98,7 @@ const teamCategories: { label: string; members: TeamMemberType[] }[] = [
         name: 'Marlene Díaz',
         role: 'Protección de Datos y Privacidad',
         category: 'Of Counsel',
-        photo: '/team/marlene-diaz.png',
+        // photo: '/team/marlene-diaz.png', // TODO: reactivar cuando tengamos todas las fotos
         brief: 'Experta internacional en privacidad y protección de datos personales. Máster en Derecho de las TICs por la Universidad Carlos III de Madrid.',
         bio: 'Experta internacional certificada en privacidad, protección de datos personales y seguridad de la información. Máster en Derecho de las TICs (Universidad Carlos III de Madrid), 15 años de experiencia en España y Latinoamérica, especialista en RGPD de la UE.',
       },
@@ -151,7 +151,7 @@ const teamCategories: { label: string; members: TeamMemberType[] }[] = [
         name: 'María Espinosa',
         role: 'Gerente de Contratos Tecnológicos y Gobernanza de TI',
         category: 'Gerente',
-        photo: '/team/maria-espinosa.png',
+        // photo: '/team/maria-espinosa.png', // TODO: reactivar cuando tengamos todas las fotos
         brief: 'Especialista en contratos tecnológicos (CLM) y compliance. Experiencia en Genpact, DXC Technology y Motorola Solutions.',
         bio: 'Especialista en Contratos Tecnológicos (CLM), Gobernanza de TI y Compliance. Con experiencia en Genpact, DXC Technology y Motorola Solutions; gestión de alianzas y ecosistemas globales.',
       },

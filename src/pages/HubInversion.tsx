@@ -142,7 +142,12 @@ const credenciales = [
   },
 ];
 
-const ferias = ['Expo CIHAC', 'Expo Manufactura', 'The Green Expo', 'Intertraffic Américas'];
+const ferias = [
+  { name: 'Expo CIHAC', logo: '/ferias/expo-cihac.png' },
+  { name: 'Expo Manufactura', logo: '/ferias/expo-manufactura.png' },
+  { name: 'The Green Expo', logo: '/ferias/the-green-expo.png' },
+  { name: 'Intertraffic Américas', logo: '/ferias/intertraffic-americas.png' },
+];
 
 export default function HubInversionPage() {
   return (
@@ -312,11 +317,18 @@ export default function HubInversionPage() {
           <FadeIn delay={0}>
             <h2 className="font-serif text-2xl text-gray-900 mb-2">Consejo Consultivo de Ferias</h2>
             <p className="text-gray-500 text-sm mb-8">Participamos en el consejo consultivo de las ferias industriales más importantes de México.</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {ferias.map((f) => (
-                <span key={f} className="border border-gray-200 rounded-full px-5 py-2 text-sm font-medium text-gray-700">
-                  {f}
-                </span>
+                <div
+                  key={f.name}
+                  className="flex items-center justify-center border border-gray-200 rounded-lg bg-white p-6 h-28 hover:shadow-md transition-shadow"
+                >
+                  <img
+                    src={f.logo}
+                    alt={f.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
               ))}
             </div>
           </FadeIn>

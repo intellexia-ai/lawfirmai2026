@@ -1,8 +1,30 @@
-interface Logo { name: string; }
+interface Logo { name: string; logo?: string; }
 
 const clients: Logo[] = [
-  { name: 'Huawei' }, { name: 'CNHTC' }, { name: 'TEK' }, { name: 'Marhnos' },
-  { name: 'Ceratizit Group' }, { name: 'Voestalpine' }, { name: 'Adler Pelzer Group' }, { name: 'Böhler' },
+  { name: 'Huawei', logo: '/clientes/huawei.png' },
+  { name: 'Autel', logo: '/clientes/autel.png' },
+  { name: 'Sanxing', logo: '/clientes/sanxing.png' },
+  { name: 'Nansen', logo: '/clientes/nansen.png' },
+  { name: 'TEK', logo: '/clientes/tek.png' },
+  { name: 'Kerui Petroleum', logo: '/clientes/kerui-petroleum.png' },
+  { name: 'MexMar', logo: '/clientes/mexmar.png' },
+  { name: 'Ceratizit Group', logo: '/clientes/ceratizit-group.png' },
+  { name: 'Hughes', logo: '/clientes/hughes.png' },
+  { name: 'Carcoustics', logo: '/clientes/carcoustics.png' },
+  { name: 'Portafolio de Negocios', logo: '/clientes/portafolio-de-negocios.png' },
+  { name: 'Costa Canuva', logo: '/clientes/costa-canuva.png' },
+  { name: 'Grupo Avanzia', logo: '/clientes/grupo-avanzia.png' },
+  { name: 'Saint-Gobain', logo: '/clientes/saint-gobain.png' },
+  { name: 'GEN', logo: '/clientes/gen.png' },
+  { name: 'Böhler', logo: '/clientes/bohler.png' },
+  { name: 'Antolin', logo: '/clientes/antolin.png' },
+  { name: 'Bontu', logo: '/clientes/bontu.png' },
+  { name: 'Perseus', logo: '/clientes/perseus.png' },
+  { name: 'LS telcom', logo: '/clientes/ls-telcom.png' },
+  { name: 'NEC', logo: '/clientes/nec.png' },
+  { name: 'U.S. Meat Export Federation', logo: '/clientes/us-meat-export-federation.png' },
+  { name: 'Marhnos', logo: '/clientes/marhnos.png' },
+  { name: 'Alpha Credit', logo: '/clientes/alpha-credit.png' },
 ];
 
 const alliances: Logo[] = [
@@ -19,20 +41,46 @@ interface Props {
 const LogoTrack = ({ logos, dark }: { logos: Logo[]; dark: boolean }) => {
   const doubled = [...logos, ...logos];
   return (
-    <div className="overflow-hidden">
-      <div className="flex gap-8 animate-scroll">
-        {doubled.map((logo, i) => (
-          <div
-            key={i}
-            className={`flex-shrink-0 px-8 py-4 rounded-lg border text-sm font-medium whitespace-nowrap ${
-              dark
-                ? 'border-white/20 text-white/70 bg-white/5'
-                : 'border-gray-200 text-gray-500 bg-white'
-            }`}
-          >
-            {logo.name}
-          </div>
-        ))}
+    <div
+      className="overflow-hidden"
+      style={{
+        maskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+      }}
+    >
+      <div
+        className="flex gap-8 animate-scroll w-max"
+        style={{ animationDuration: `${Math.max(28, logos.length * 3)}s` }}
+      >
+        {doubled.map((logo, i) =>
+          logo.logo ? (
+            <div
+              key={i}
+              className="flex-shrink-0 flex items-center justify-center h-20 w-40 px-6"
+            >
+              <img
+                src={logo.logo}
+                alt={logo.name}
+                className={`max-h-full max-w-full object-contain transition ${
+                  dark
+                    ? 'opacity-80 hover:opacity-100'
+                    : 'opacity-70 grayscale hover:opacity-100 hover:grayscale-0'
+                }`}
+              />
+            </div>
+          ) : (
+            <div
+              key={i}
+              className={`flex-shrink-0 px-8 py-4 rounded-lg border text-sm font-medium whitespace-nowrap ${
+                dark
+                  ? 'border-white/20 text-white/70 bg-white/5'
+                  : 'border-gray-200 text-gray-500 bg-white'
+              }`}
+            >
+              {logo.name}
+            </div>
+          )
+        )}
       </div>
     </div>
   );

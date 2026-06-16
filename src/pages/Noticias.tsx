@@ -1,5 +1,17 @@
 import { PageHero } from '../components/ui/PageHero';
 import { FadeIn } from '../components/ui/FadeIn';
+import { LogoMarquee } from '../components/ui/LogoMarquee';
+
+const medios = [
+  { name: 'Expansión', logo: '/medios/expansion.png' },
+  { name: 'ASTUREX — Principado de Asturias', logo: '/medios/asturex.png' },
+  { name: 'Global Business Forum Latin America', logo: '/medios/global-business-forum.png' },
+  { name: 'CCPIT', logo: '/medios/ccpit.png' },
+  { name: 'BID', logo: '/medios/bid.png' },
+  { name: 'Expo CIHAC', logo: '/medios/expo-cihac.png' },
+  { name: 'La Nueva España', logo: '/medios/la-nueva-espana.png' },
+  { name: 'Protocolo Foreign Affairs & Lifestyle', logo: '/medios/protocolo.png' },
+];
 
 const articles = [
   {
@@ -60,6 +72,20 @@ export default function NoticiasPage() {
                 Suscribirse al Newsletter
               </a>
             </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-16 px-6 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn delay={0}>
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-[#C96A3A] mb-2">
+              Presencia
+            </p>
+            <h2 className="text-center font-serif text-2xl text-gray-900 mb-10">
+              Medios y aliados que han hablado de nosotros
+            </h2>
+            <LogoMarquee logos={medios} duration={35} />
           </FadeIn>
         </div>
       </section>
