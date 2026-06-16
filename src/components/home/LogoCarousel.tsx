@@ -61,11 +61,7 @@ const LogoTrack = ({ logos, dark }: { logos: Logo[]; dark: boolean }) => {
               <img
                 src={logo.logo}
                 alt={logo.name}
-                className={`max-h-full max-w-full object-contain transition ${
-                  dark
-                    ? 'opacity-80 hover:opacity-100'
-                    : 'opacity-70 grayscale hover:opacity-100 hover:grayscale-0'
-                }`}
+                className="max-h-12 max-w-full object-contain transition-transform duration-300 hover:scale-125"
               />
             </div>
           ) : (
