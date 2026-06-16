@@ -12,7 +12,7 @@ export const Footer = () => (
       {/* Links */}
       <div>
         <h4 className="text-white/40 text-xs uppercase tracking-widest mb-4">Navegación</h4>
-        {['Home', 'La firma', 'Áreas de Práctica', 'Proyectos de Inversión', 'Servicios Especializados'].map((l) => (
+        {['Home', 'La Firma', 'Áreas de Práctica', 'Hub de Inteligencia Comercial y Desarrollo de Negocios', 'Nuestro Agente'].map((l) => (
           <a key={l} href="#" className="block text-white/70 hover:text-white text-sm mb-2 transition-colors">{l}</a>
         ))}
       </div>
