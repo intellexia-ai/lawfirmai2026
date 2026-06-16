@@ -64,7 +64,7 @@ export const FirmaIntro = () => {
       <div className={`max-w-6xl mx-auto text-center mb-16 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-gray-900 leading-relaxed">
           Somos una Firma de profesionales del derecho, las relaciones internacionales, política pública y economistas comprometidos con la innovación constante y mejora en la prestación de{' '}
-          <span className="text-[#C96A3A]">servicios legales de excelencia.</span>{' '}
+          <span className="text-[#C96A3A]">servicios de excelencia.</span>{' '}
           Ampliamos nuestros servicios para ser más que un referente del derecho, y sumarnos a los cambios de la Geopolítica internacional
         </p>
       </div>

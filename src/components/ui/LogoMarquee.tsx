@@ -1,0 +1,46 @@
+interface Logo {
+  name: string;
+  logo: string;
+}
+
+interface LogoMarqueeProps {
+  logos: Logo[];
+  /** Segundos que tarda en completar una vuelta. Más alto = más lento. */
+  duration?: number;
+}
+
+/**
+ * Carrusel infinito de logos con scroll automático horizontal.
+ * Duplica la lista para lograr el bucle continuo y se pausa al hacer hover.
+ */
+export function LogoMarquee({ logos, duration = 40 }: LogoMarqueeProps) {
+  const items = [...logos, ...logos];
+
+  return (
+    <div
+      className="group relative w-full overflow-hidden"
+      style={{
+        maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+      }}
+    >
+      <div
+        className="flex w-max animate-marquee items-center group-hover:[animation-play-state:paused]"
+        style={{ ['--marquee-duration' as string]: `${duration}s` }}
+      >
+        {items.map((item, i) => (
+          <div
+            key={`${item.name}-${i}`}
+            className="flex h-20 w-40 shrink-0 items-center justify-center px-6 md:w-48"
+          >
+            <img
+              src={item.logo}
+              alt={item.name}
+              className="max-h-full max-w-full object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
