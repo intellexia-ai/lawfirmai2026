@@ -23,6 +23,19 @@ const clients: Logo[] = [
   { name: 'NEC', logo: '/clientes/nec.png' },
   { name: 'U.S. Meat Export Federation', logo: '/clientes/us-meat-export-federation.png' },
   { name: 'Marhnos', logo: '/clientes/marhnos.png' },
+  { name: 'Petronas', logo: '/clientes/petronas.png' },
+  { name: 'Maxi Acero', logo: '/clientes/maxi-acero.png' },
+  { name: 'Esteripharma', logo: '/clientes/esteripharma.png' },
+  { name: 'Close-Up International', logo: '/clientes/close-up-international.png' },
+  { name: 'Yes Pablo', logo: '/clientes/yes-pablo.png' },
+  { name: 'Roma Energy Holdings', logo: '/clientes/roma-energy-holdings.png' },
+  { name: 'VCOT', logo: '/clientes/vcot.png' },
+  { name: 'EBX Energy Business Xplorer', logo: '/clientes/ebx.png' },
+  { name: 'Waves Quality Solutions', logo: '/clientes/waves-quality-solutions.png' },
+  { name: 'LIT Líneas Internacionales Tijuana', logo: '/clientes/lit.png' },
+  { name: 'Pharmadata', logo: '/clientes/pharmadata.png' },
+  { name: 'GTV', logo: '/clientes/gtv.png' },
+  { name: 'Tía Tula', logo: '/clientes/tia-tula.png' },
 ];
 
 const alliances: Logo[] = [
