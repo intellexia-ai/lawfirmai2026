@@ -56,12 +56,12 @@ const LogoTrack = ({ logos, dark }: { logos: Logo[]; dark: boolean }) => {
           logo.logo ? (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center justify-center h-20 w-40 px-6"
+              className="flex-shrink-0 flex items-center justify-center h-24 w-44 px-6"
             >
               <img
                 src={logo.logo}
                 alt={logo.name}
-                className="max-h-12 max-w-full object-contain transition-transform duration-300 hover:scale-125"
+                className="max-h-16 max-w-full object-contain transition-transform duration-300 hover:scale-125"
               />
             </div>
           ) : (

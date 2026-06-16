@@ -31,12 +31,12 @@ export function LogoMarquee({ logos, duration = 40 }: LogoMarqueeProps) {
         {items.map((item, i) => (
           <div
             key={`${item.name}-${i}`}
-            className="flex h-20 w-40 shrink-0 items-center justify-center px-6 md:w-48"
+            className="flex h-24 w-44 shrink-0 items-center justify-center px-6 md:w-52"
           >
             <img
               src={item.logo}
               alt={item.name}
-              className="max-h-12 max-w-full object-contain transition-transform duration-300 hover:scale-125"
+              className="max-h-16 max-w-full object-contain transition-transform duration-300 hover:scale-125"
             />
           </div>
         ))}
