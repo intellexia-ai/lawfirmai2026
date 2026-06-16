@@ -1,3 +1,19 @@
+import { Link } from 'react-router-dom';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'La Firma', href: '/la-firma' },
+  { label: 'Áreas de Práctica', href: '/areas-practica' },
+  { label: 'Hub de Inteligencia Comercial y Desarrollo de Negocios', href: '/hub-inversion' },
+  { label: 'Nuestro Agente', href: '/simulador' },
+];
+
+const moreLinks = [
+  { label: 'Medios y Noticias', href: '/noticias' },
+  { label: 'Contacto', href: '/contacto' },
+  { label: 'Política de Privacidad', href: '/privacidad' },
+];
+
 export const Footer = () => (
   <footer id="contacto" className="bg-gray-950 text-white pt-16 pb-8 px-6 md:px-12 lg:px-16">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
@@ -12,16 +28,16 @@ export const Footer = () => (
       {/* Links */}
       <div>
         <h4 className="text-white/40 text-xs uppercase tracking-widest mb-4">Navegación</h4>
-        {['Home', 'La Firma', 'Áreas de Práctica', 'Hub de Inteligencia Comercial y Desarrollo de Negocios', 'Nuestro Agente'].map((l) => (
-          <a key={l} href="#" className="block text-white/70 hover:text-white text-sm mb-2 transition-colors">{l}</a>
+        {navLinks.map((l) => (
+          <Link key={l.label} to={l.href} className="block text-white/70 hover:text-white text-sm mb-2 transition-colors">{l.label}</Link>
         ))}
       </div>
 
       {/* Links 2 */}
       <div>
         <h4 className="text-white/40 text-xs uppercase tracking-widest mb-4">Más</h4>
-        {['Medios y Noticias', 'Contacto', 'Política de Privacidad'].map((l) => (
-          <a key={l} href="#" className="block text-white/70 hover:text-white text-sm mb-2 transition-colors">{l}</a>
+        {moreLinks.map((l) => (
+          <Link key={l.label} to={l.href} className="block text-white/70 hover:text-white text-sm mb-2 transition-colors">{l.label}</Link>
         ))}
       </div>
 
